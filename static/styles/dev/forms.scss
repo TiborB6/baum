@@ -1,0 +1,260 @@
+.form-wrapper {
+    position: relative;
+    
+    width: 100%;
+
+    min-height: 34px;
+  
+    input {
+      font-size: 16px;
+      height: 37px;
+      width: 100%;
+      border-style: none;
+      background: none;
+      color: var(--main-color);
+      vertical-align: top;
+      outline: none;
+  
+      height: 30px;
+
+      -webkit-box-shadow: 0 0 0px 1000px white inset; /* For WebKit browsers like Chrome */
+      -moz-box-shadow: 0 0 0px 1000px white inset; /* For Firefox */
+      background-color: white !important;
+
+        &.optional {
+            border-color: var(--accent-color)!important;
+            color: var(--accent-color)!important;
+        }
+    }
+  
+    div {
+        content: "";
+    
+        width: 100%;
+        height: 2px;
+    
+        background-color: var(--main-color);
+
+        &.optional {
+            background-color: var(--accent-color)!important;
+        }
+    }
+  
+    div::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        transform-origin: center;
+        transform: scaleX(0); 
+        transition: transform 0.3s ease-in-out;
+
+        background-color: var(--highlight-color);
+
+        
+    }
+  
+  
+    input:focus ~ div::before,
+    input:valid ~ div::before {
+        transform: scale(1);
+    }
+
+    input.invalid ~ div::before {
+        transform: scale(1);
+        background-color: var(--error-color);
+    }
+  
+    label {
+      pointer-events: none;
+      color: var(--main-color);
+  
+      position: absolute;
+      left: 6px;
+      bottom: 8px;
+  
+      font-size: 16px;
+      transform: translateY(0px);
+      transition: transform 0.3s ease-in-out;
+
+      &.optional {
+        color: var(--accent-color)!important;
+      }
+
+      span {
+        font-size: 12px;
+      }
+    }
+  
+    input:focus ~ label,
+    input:valid ~ label {
+        &:not(.optional) {
+            transform: translateY(-24px);
+            font-size: 14px;
+            color: var(--highlight-color);
+        }
+    }
+
+    input:focus ~ label,
+    input:not(:empty) ~ label {
+        &.optional {
+            transform: translateY(-24px);
+            font-size: 14px;
+            color: var(--highlight-color);
+        }
+    }
+
+
+    input.invalid ~ label{
+        transform: translateY(-24px);
+        font-size: 14px;
+        color: var(--error-color)!important;
+    }
+  
+    .input-svg {
+      fill: var(--accent-color);
+      position: absolute;
+  
+      right: 6px;
+      bottom: 6px;
+  
+      height: 25px;
+      width: 25px;
+  
+      transition: fill 0.2s ease;
+  
+      &:hover {
+        cursor: pointer;
+        fill: var(--contrary-color);
+      }
+    }
+  
+    textarea {
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 4px;
+        border-color: var(--main-color);
+        box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+        
+        width: 100%;
+        height: 100px;
+        
+        background: none;
+        
+        color: var(--contrary-color);
+        font-family: Roboto, Arial, Helvetica, sans-serif;
+    
+        transition: all 0.2s ease;
+        
+        outline: none;
+    
+        transition: all 0.3s ease-in-out;
+        
+        svg {
+            height: 30px;
+            width: auto;
+        }
+        
+        &:hover {
+            cursor: pointer;
+        }
+    
+        &:focus {
+            border-color: var(--highlight-color)!important;
+        }
+        
+        /* Apply border color based on validation state */
+        &.empty {
+            border-color: var(--contrary-color);
+        }
+    
+        &.valid {
+            border-color: var(--highlight-color);
+        }
+    
+    
+        &.invalid {
+            border-color: var(--error-color)!important;
+        }
+    
+        &.empty:focus ~ label,
+        &.valid ~ label {
+            transform: translateY(-26px);
+            font-size: 14px;
+            color: var(--highlight-color);
+        }
+        
+        &.invalid ~ label{
+            transform: translateY(-26px);
+            font-size: 14px;
+            color: var(--error-color);
+        }
+    }
+  
+    textarea ~ label {
+      top: 6px;
+    }
+    
+    /* Reset styling for empty div elements */
+    div:empty {
+      border: none;
+      box-shadow: none;
+    }
+
+    #file-upload {
+        border-style: none;
+    }
+
+    select {
+        appearance: none; /* Remove default styling in most browsers */
+        -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+        -moz-appearance: none;
+
+        font-size: 14px;
+        width: 100%;
+        padding: 5px 10px;
+
+        border: none; /* Remove all borders */
+        border-bottom: 2px solid var(--accent-color); /* Add bottom border */
+
+        background: none; /* Remove background */
+        color: var(--accent-color);
+
+        outline: none; /* Remove outline */
+
+        transition: border-color 0.2s ease-in; /* Transition for border color */
+
+        &.required {
+            border-color: var(--main-color);
+            color: var(--main-color);
+        }
+
+        &.optional {
+            border-bottom-color: var(--accent-color)!important;
+            color: var(--accent-color)!important;
+        }
+    }
+
+    select:focus,
+    select:valid {
+        border-color: var(--highlight-color);
+    }
+
+    select.invalid {
+        border-color: var(--error-color);
+    }
+
+    select:focus ~ label,
+    select:valid ~ label {
+        transform: translateY(-30px);
+        font-size: 14px;
+        color: var(--highlight-color);
+    }
+
+    select.invalid ~ label {
+        transform: translateY(-30px);
+        font-size: 14px;
+        color: var(--error-color);
+    }
+}

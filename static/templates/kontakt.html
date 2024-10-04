@@ -1,0 +1,48 @@
+{{define "header"}}
+    <link rel="stylesheet" href="/static/styles/forms.css">
+    <link rel="stylesheet" href="/static/styles/home.css">
+    <link rel="stylesheet" href="/static/styles/kontakt.css">
+{{end}}
+
+{{define "content"}}
+<section>
+    <div class="left">
+        <h1>
+            Kontaktieren Sie uns
+        </h1>
+        <p>v.stoelner@gmx.at</p>
+        <p>+43 676/3760838</p>
+        <p>2340 Mödling, Scheffergasse 20/6</p>
+    </div>
+
+    <div class="right">
+        <form action="/kontakt" method="post">
+            {{.CSRF}}
+            <div class="form-wrapper">
+                <input name="name" type="text" class="required" {{if .Form.Errors.Name}} class="invalid" {{end}} placeholder="" value="" required>
+                <div></div>
+                <label for="name" class="required">Name*{{if .Form.Errors.Name}} - {{.Form.Errors.Name}} {{end}}</label>
+            </div>
+
+            <div class="form-wrapper">
+                <input name="email" type="email" class="required" {{if .Form.Errors.Email}} class="invalid" {{end}} placeholder="" value="" required>
+                <div></div>
+                <label for="email" class="required">Email*{{if .Form.Errors.Email}} - {{.Form.Errors.Email}} {{end}}</label>
+            </div>
+
+            <div class="form-wrapper">
+                <input name="tel" type="tel" class="required" {{if .Form.Errors.Tel}} class="invalid" {{end}} placeholder="" value="" required>
+                <div></div>
+                <label for="tel" class="required">Telefon*{{if .Form.Errors.Tel}} - {{.Form.Errors.Tel}} {{end}}</label>
+            </div>
+
+            <div class="form-wrapper">
+                <textarea name="message" type="text" class="required" {{if .Form.Errors.Message}} class="invalid" {{end}} placeholder="" value="" required></textarea>
+                <label for="message" class="required">Nachricht*{{if .Form.Errors.Message}} - {{.Form.Errors.Message}} {{end}}</label>
+            </div>
+
+            <button type="submit">Senden</button>
+        </form>
+    </div>
+</section>
+{{end}}
