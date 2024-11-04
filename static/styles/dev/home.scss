@@ -1,82 +1,146 @@
 .content {
+    width: 100vw;
+    
     .interest {
         display: flex;
         width: 100%;
+        height: 60vh;
         overflow: hidden;
 
-        div {
-            flex: 1;
-            max-width: 33%;
-            box-sizing: border-box;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            height: 600px;
-            position: relative;
-            opacity: 0; /* Initially hidden */
-            animation: flyIn 1s forwards; /* Animation for flying in */
-
-            /* Add a delay to each child to create the staggered effect */
-            &:nth-child(1) {
-                animation-delay: 0.2s; /* First image starts first */
-            }
-            &:nth-child(2) {
-                animation-delay: 0.4s; /* Second image starts second */
-            }
-            &:nth-child(3) {
-                animation-delay: 0.6s; /* Third image starts last */
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-
-        /* First image with no tilt on the left, increased tilt on the right */
-        div:nth-child(1) img {
-            clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-        }
-
-        /* Middle image with increased tilts on both sides */
-        div:nth-child(2) img {
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-        }
-
-        /* Third image with increased tilt on the left, no tilt on the right */
-        div:nth-child(3) img {
-            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-        }
-
-        @keyframes flyIn {
-            0% {
-                transform: translateX(-100%) scale(1.09); /* Start off-screen to the left and scaled */
-                opacity: 0; /* Fully transparent */
-            }
-            100% {
-                transform: translateX(0) scale(1.09); /* Move to original position and scaled */
-                opacity: 1; /* Fully opaque */
-            }
+        video {
+            width: 100%;  
+            height: 60vh;
+            object-fit: cover; 
         }
     }
 
+    .break {
+        width: 100%;
+        content: "";
+        height: 1px;
+        background-color: var(--accent-color);
+    }
+
     .desire {
+        padding: 60px;
         display: flex;
         align-items: center;
         width: 100%;
         justify-content: space-between;
+        box-sizing: border-box;
 
-        section {
-            padding: 40px;
+        .data {
+            align-items: center;
+            color: var(--accent-color);
+        }
 
-            button {
-                border: none;
-                background-color: var(--highlight-color);
+        h1 {
+            font-size: 32pt;
+        }
 
-                width: 100px;
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            a {
+                button {
+                    border: none;
+                    background-color: var(--highlight-color);
+                    border-radius: 6px;
+        
+                    width: 150px;
+                    height: 50px;
+
+                    color: var(--background-color);
+
+                    &:hover {
+                        cursor: pointer;
+                        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                    }
+                }   
             }
 
+            svg {
+                width: 100px;
+                height: 100px;
+                fill: var(--highlight-color);
+                path {
+                    stroke-width: 10;
+                }
+            }
+        }
+    }
+
+    .kontakt {
+        height: 500px;
+        display: flex;
+    
+        .left {
+            flex: 2;
+            height: 100%;
+    
+            display: flex;
+            gap: 50px;
+            
+            padding: 60px;
+    
+            box-shadow: inset 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+    
+    
+            .contact-data {
+                .kontakt-data-wrapper {
+                    width: 100%;    
+        
+                    padding: 50px;
+                }
+            }
+    
+            .contact-form {
+                max-width: 500px;
+            
+                form {
+                    width:400px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+    
+                    button {
+                        align-self: flex-end;
+    
+                        border: none;
+                        background-color: var(--highlight-color);
+                        border-radius: 6px;
+            
+                        width: 150px;
+                        height: 50px;
+    
+                        color: var(--background-color);
+    
+                        &:hover {
+                            cursor: pointer;
+                            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                        }
+                    }       
+                }
+            }
+    
+        }
+        
+        .right {
+            flex: 3.5;
+            height: 100%;
+            max-width: 50vw;
+    
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+        
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
         }
     }
 }

@@ -1,13 +1,11 @@
 package web
 
 import (
+	"fmt"
 	"html/template"
-	"io/ioutil"
-	"log"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/gorilla/csrf"
 )
 
 type Handler struct {
@@ -21,22 +19,10 @@ func NewHandler() *Handler {
 
 	legal := LegalHandler{}
 
-	key, err := ioutil.ReadFile("./cmd/server/csrf.key")
-	if err != nil {
-		log.Fatalf("Error reading CSRF key: %v", err)
-	}
-
-	csrfMiddleware := csrf.Protect(
-		key,
-		csrf.Path("/"),
-		csrf.Secure(false), // Set this to true in production
-	)
-
-	h.Use(csrfMiddleware)
-
 	h.Get("/", h.Home())
 	h.Get("/services", h.Services())
 	h.Get("/kontakt", h.Kontakt())
+	h.Post("/kontakts", h.Mail())
 
 	h.Route("/legal", func(r chi.Router) {
 		r.Get("/agb", legal.AGB())
@@ -72,6 +58,13 @@ func (h *Handler) Kontakt() http.HandlerFunc {
 }
 
 func (h *Handler) Mail() http.HandlerFunc {
+	tmplFail := template.Must(template.ParseFiles("static/templates/layout.html", "static/templates/kontakt.html"))
+	tmplSuccess := template.Must(template.ParseFiles("static/templates/layout.html", "static/templates/success.html"))
+
+	type data struct {
+		ContactModelForm
+	}
+
 	return func(w http.ResponseWriter, r *http.Request) {
 		form := ContactModelForm{
 			Name:    r.FormValue("name"),
@@ -80,9 +73,19 @@ func (h *Handler) Mail() http.HandlerFunc {
 			Message: r.FormValue("message"),
 		}
 
+		if !form.Validate() {
+			fmt.Print(form.Errors)
+			tmplFail.Execute(w, data{
+				ContactModelForm: form,
+			})
+			http.Redirect(w, r, r.Referer(), http.StatusFound)
+		}
+
 		err := SendEmail(form)
 		if err != nil {
 			panic(err)
 		}
+
+		tmplSuccess.Execute(w, nil)
 	}
 }

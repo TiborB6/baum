@@ -5,21 +5,23 @@
 {{end}}
 
 {{define "content"}}
-<section>
+<section class="kontakt">
     <div class="left">
         <h1>
             Kontaktieren Sie uns
         </h1>
-        <p>v.stoelner@gmx.at</p>
-        <p>+43 676/3760838</p>
-        <p>2340 Mödling, Scheffergasse 20/6</p>
+        <div class="kontakt-data-wrapper">
+            <p>v.stoelner@gmx.at</p>
+            <p>+43 676/3760838</p>
+            <p>2340 Mödling, Scheffergasse 20/6</p>   
+        </div>
     </div>
 
     <div class="right">
         <form action="/kontakt" method="post">
             {{.CSRF}}
             <div class="form-wrapper">
-                <input name="name" type="text" class="required" {{if .Form.Errors.Name}} class="invalid" {{end}} placeholder="" value="" required>
+                <input name="name" type="text" class="required" {{if .FormErrors.Name}} class="invalid" {{end}} placeholder="" value="" required>
                 <div></div>
                 <label for="name" class="required">Name*{{if .Form.Errors.Name}} - {{.Form.Errors.Name}} {{end}}</label>
             </div>
