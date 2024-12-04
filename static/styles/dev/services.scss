@@ -7,29 +7,44 @@
         h1 {
             font-size: 32pt;
             color: var(--highlight-color);
-            text-align: end;
             padding: 30px;
+            border-bottom: 1px solid var(--accent-color);
+            width: 100%;
         }
     }
-
-       
 
     .service-wrapper {
         width: 100%;
 
+        padding: 30px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px; 
+
         section {
             height: 300px;
+            width: 90%;
             display: flex;
 
-            border-top: 1px solid var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            &:hover {
+                transform: scale(1.02) translateY(-2px); /* Slightly larger and moves up */
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+            }
+
+            overflow: hidden;
     
             .right {
-                flex: 2;
+                width: 50%;
                 height: 100%;
                 
                 padding: 60px;
-
-                clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
 
                 display: flex;
                 flex-direction: column;
@@ -46,28 +61,28 @@
                 }
 
 
-            a {
-                button {
-                    border: none;
-                    background-color: var(--highlight-color);
-                    border-radius: 6px;
-        
-                    width: 150px;
-                    height: 50px;
+                a {
+                    button {
+                        border: none;
+                        background-color: var(--highlight-color);
+                        border-radius: 6px;
+            
+                        width: 150px;
+                        height: 50px;
 
-                    color: var(--background-color);
+                        color: var(--background-color);
 
-                    &:hover {
-                        cursor: pointer;
-                        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-                    }
-                }   
-            }
+                        &:hover {
+                            cursor: pointer;
+                            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                        }
+                    }   
+                }
             }
 
 
             .left {
-                flex: 3.5;
+                width: 50%;
                 max-width: 50vw;
         
                 clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);

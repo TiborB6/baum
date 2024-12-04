@@ -4,13 +4,115 @@
     .interest {
         display: flex;
         width: 100%;
-        height: 60vh;
+        height: 93vh;
         overflow: hidden;
+
+        .overlay {
+            position: absolute; /* Ensure the overlay covers the entire section */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
+            pointer-events: none; /* Prevent interaction with the overlay */
+        }
 
         video {
             width: 100%;  
-            height: 60vh;
-            object-fit: cover; 
+            height: 100%;
+            object-fit: cover;
+            object-position: 21% 79%;
+            overflow: hidden; 
+        }
+        
+        .desire {
+            position: absolute; /* Ensure the overlay covers the entire section */
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+
+            padding: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+    
+            .data {
+                align-items: center;
+                color: var(--accent-color);
+            }
+    
+            h1 {
+                font-size: 54px;
+                color: var(--background-color);
+            }
+            @media (max-width: 1000) {
+                font-size: 32px;
+            }
+            @media (max-width: 500) {
+                font-size: 80vw;
+            }
+
+            #header {
+                gap: 40px;
+                padding-bottom: 40px;
+            }
+    
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-right: 80px;
+
+                a {
+                    button {
+                        border: none;
+                        background-color: var(--highlight-color);
+                        border-radius: 6px;
+            
+                        width: 180px;
+                        height: 60px;
+    
+                        color: var(--background-color);
+                        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25), 0 4px 6px -4px rgb(0 0 0 / 0.25);
+    
+                        &:hover {
+                            cursor: pointer;
+                            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+                        }
+                    }   
+                }
+    
+                svg {
+                    width: 100px;
+                    height: 100px;
+                    fill: var(--highlight-color);
+                    padding-top: 40px;
+                    path {
+                        stroke-width: 10;
+                        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25), 0 4px 6px -4px rgb(0 0 0 / 0.25);
+                    }
+                }
+
+                p {
+                    color: #999;
+                    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+                }
+            }
+        }
+    }
+    @media (max-width: 500px) {
+        .interest {
+            .desire {
+                padding: 20px;    
+            }
+        }
+    }
+    @media (max-width: 1000px) {
+        .interest {
+            .desire {
+                padding: 40px;    
+            }
         }
     }
 
@@ -19,128 +121,5 @@
         content: "";
         height: 1px;
         background-color: var(--accent-color);
-    }
-
-    .desire {
-        padding: 60px;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: space-between;
-        box-sizing: border-box;
-
-        .data {
-            align-items: center;
-            color: var(--accent-color);
-        }
-
-        h1 {
-            font-size: 32pt;
-        }
-
-        div {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-
-            a {
-                button {
-                    border: none;
-                    background-color: var(--highlight-color);
-                    border-radius: 6px;
-        
-                    width: 150px;
-                    height: 50px;
-
-                    color: var(--background-color);
-
-                    &:hover {
-                        cursor: pointer;
-                        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-                    }
-                }   
-            }
-
-            svg {
-                width: 100px;
-                height: 100px;
-                fill: var(--highlight-color);
-                path {
-                    stroke-width: 10;
-                }
-            }
-        }
-    }
-
-    .kontakt {
-        height: 500px;
-        display: flex;
-    
-        .left {
-            flex: 2;
-            height: 100%;
-    
-            display: flex;
-            gap: 50px;
-            
-            padding: 60px;
-    
-            box-shadow: inset 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    
-            clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-    
-    
-            .contact-data {
-                .kontakt-data-wrapper {
-                    width: 100%;    
-        
-                    padding: 50px;
-                }
-            }
-    
-            .contact-form {
-                max-width: 500px;
-            
-                form {
-                    width:400px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 15px;
-    
-                    button {
-                        align-self: flex-end;
-    
-                        border: none;
-                        background-color: var(--highlight-color);
-                        border-radius: 6px;
-            
-                        width: 150px;
-                        height: 50px;
-    
-                        color: var(--background-color);
-    
-                        &:hover {
-                            cursor: pointer;
-                            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-                        }
-                    }       
-                }
-            }
-    
-        }
-        
-        .right {
-            flex: 3.5;
-            height: 100%;
-            max-width: 50vw;
-    
-            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-        
-            img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-            }
-        }
     }
 }
